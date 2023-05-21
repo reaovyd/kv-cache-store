@@ -34,14 +34,18 @@ file(GLOB ALL_TSTF "${TSTF}/*.c")
 
 add_executable(${EXEC} ${MAIN} ${ALL_SRCF} ${ALL_INCF})
 add_executable(${EXEC_TESTS} ${ALL_TSTF} ${ALL_SRCF} ${ALL_INCF})
-add_executable(${EXEC_DEBUG} ${MAIN} ${ALL_SRCF} ${ALL_INCF})
 
 target_include_directories(${EXEC}       PRIVATE ${INCF})
 target_include_directories(${EXEC_TESTS} PRIVATE ${INCF})
-target_include_directories(${EXEC_DEBUG} PRIVATE ${INCF})
 
-target_compile_options(${EXEC_DEBUG} PRIVATE ${DEBUG_FLAG})
 
 target_link_libraries(${EXEC} ${PTHREAD_LIB})
 target_link_libraries(${EXEC_TESTS} ${PTHREAD_LIB} ${CRITERION_LIB})
-target_link_libraries(${EXEC_DEBUG} ${PTHREAD_LIB})
+
+# debug = development
+if(${CMAKE_BUILD_TYPE} STREQUAL Debug)
+    add_executable(${EXEC_DEBUG} ${MAIN} ${ALL_SRCF} ${ALL_INCF})
+    target_include_directories(${EXEC_DEBUG} PRIVATE ${INCF})
+    target_compile_options(${EXEC_DEBUG} PRIVATE ${DEBUG_FLAG})
+    target_link_libraries(${EXEC_DEBUG} ${PTHREAD_LIB})
+endif()
