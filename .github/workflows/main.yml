@@ -26,10 +26,10 @@ jobs:
         sudo tar -xzvf libevent-2.1.12-stable.tar.gz
     - name: Build libevent
       run: |
-        cd libevent-2.1.12-stable && mkdir build && cd build
-        cmake ..
-        make
-        make install
+        cd libevent-2.1.12-stable && sudo mkdir build && cd build
+        sudo cmake ..
+        sudo make
+        sudo make install
     - name: Configure and Build CMake 
       run: cmake -S ${{github.workspace}} -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
