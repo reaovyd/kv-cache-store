@@ -25,9 +25,8 @@ jobs:
         sudo wget https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz
         sudo tar -xzvf libevent-2.1.12-stable.tar.gz
     - name: Build libevent
-      working-directory: libevent-2.1.12-stable.tar.gz
       run: |
-        sudo mkdir build && cd build
+        cd libevent-2.1.12-stable && mkdir build && cd build
         cmake ..
         make
         make install
