@@ -32,7 +32,7 @@ set(DEBUG_FLAG "-g")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${WFLAGS}")
 
 # getting all files in respective directory
-set(ALL_SRCF "")
+set(ALL_SRCF "${SRCF}/server.c")
 file(GLOB ALL_INCF "${INCF}/*.h")
 file(GLOB ALL_TSTF "${TSTF}/*.c")
 
